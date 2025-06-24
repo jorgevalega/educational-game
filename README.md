@@ -34,8 +34,8 @@ You can access and test the game directly at:
 
 ## 📸 Screenshots
 
-![Educational Game](assets/screenshot_01.jpg)
-![Medal and congratulations](assets/screenshot_02.jpg)
+![Educational Game](assets/game.jpg)
+![Medal and congratulations](assets/congratulations.jpg)
 
 ---
 
