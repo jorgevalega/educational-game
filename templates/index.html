@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Educational Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: serif;
+            text-align: center;
+            padding: 10px;
+            background-color: #fdf6e3;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .item {
+            font-size: 3em;
+            font-weight: bold;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #ffe082;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .item:hover {
+            background-color: #ffd54f;
+        }
+
+        .item.active {
+            background-color: #a5d6a7 !important;
+        }
+
+        .item.selected {
+            background-color: #66bb6a !important;
+        }
+
+        .item.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .medal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: gold;
+            font-weight: bold;
+            z-index: 2000;
+            display: none;
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .item {
+                font-size: 2.5em;
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Learn Letters and Numbers</h1>
+    <div class="subtitle">Page {{ pagina_atual }} of {{ paginas_total }} ({{ type }})</div>
+
+    <div class="grid" id="grid">
+        {% for item in group %}
+        <div class="item" onclick="playSound(this, '{{ item }}')">{{ item }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="medal" id="medalEarned">🏅 Congratulations!</div>
+
+    <audio id="audio" preload="auto"></audio>
+    <audio id="audioCongrats" preload="auto" src="/static/audio/congratulations.mp3"></audio>
+
+    <script>
+        let selected = null;
+        let selectedItems = new Set();
+        const totalItems = {{ group|length }};
+        const audio = document.getElementById("audio");
+        const audioCongrats = document.getElementById("audioCongrats");
+        const grid = document.getElementById("grid");
+
+        function playSound(element, name) {
+            if (selected) {
+                selected.classList.remove("selected");
+                selected.classList.add("active");
+            }
+
+            element.classList.remove("active");
+            element.classList.add("selected");
+            selected = element;
+
+            audio.pause();
+            audio.src = "/static/audio/" + name + ".mp3";
+            audio.load();
+            audio.play();
+
+            selectedItems.add(name);
+
+            if (selectedItems.size >= totalItems) {
+                setTimeout(() => {
+                    showMedal();
+                }, 1500);
+            }
+        }
+
+        function showMedal() {
+            const medal = document.getElementById("medalEarned");
+
+            // Disable all items
+            const items = document.querySelectorAll(".item");
+            items.forEach(item => item.classList.add("disabled"));
+
+            medal.style.display = "flex";
+            audioCongrats.play();
+
+            // Automatically go to next page after 5 seconds
+            setTimeout(() => {
+                window.location.href = "/?page={{ page + 1 if page < total else 1 }}";
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>
