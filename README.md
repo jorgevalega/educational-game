@@ -51,14 +51,14 @@ git clone https://github.com/jorgevalega/educational-game.git
 cd educational-game
 ```
 
-**3. Crie e ative um ambiente virtual (recomendado)**
+**3. Create and activate a virtual environment (recommended)**
 
 ```bash
 python -m venv venv
 source venv/bin/activate       # Linux/macOS
 venv\Scripts\activate          # Windows
 ```
-**4. Instale as dependências**
+**4. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
@@ -66,67 +66,67 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Como usar
+## ▶️ How to Use
 
-**1. Execute a aplicação localmente com:**
+**1. Run the application locally:**
 
 ```bash
 python app.py
 ```
 
-**2. Abra o navegador e acesse:**
+**2. Open your browser and go to:**
 
 ```bash
 http://localhost:5000
 ```
 
-**3. Toque nas letras ou números para ouvir sua pronúncia.**
-Ao completar uma página, uma medalha aparece com som de parabéns e a aplicação avança automaticamente para a próxima página.
+**3. Click on the letters or numbers to hear their pronunciation.**
+After completing a page, a medal will appear with a congratulations sound, and the app will automatically move to the next page.
 
 ---
 
-## 📁 Estrutura de Pastas
+## 📁 Folder Structure
 
 ```bash
-jogo-educativo/
+educational-game/
 ├── app.py
 ├── requirements.txt
 ├── static/
 │   └── audio/
 │       ├── A.mp3
 │       ├── 1.mp3
-│       └── parabens.mp3
+│       └── congratulations.mp3
 ├── templates/
 │   └── index.html
 ├── assets/
-│   ├── jogo.jpg
-│   └── parabens.jpg
+│   ├── game.jpg
+│   └── congratulations.jpg
 └── README.md
 ```
 
 ---
 
-## 🧾 Dependências
+## 🧾 Dependencies
 
-- `flask` — Framework web leve e poderoso para Python
-- `gtts` (opcional) — Utilizado para gerar os áudios em MP3 (Text-to-Speech do Google)
+- `flask` — Lightweight and powerful web framework for Python
+- `gtts` (optional) — Used to generate .mp3 audio files (Google Text-to-Speech)
 
-Todas as dependências necessárias estão listadas em [`requirements.txt`](requirements.txt).
-
----
-
-## 🧑‍💻 Autor
-
-Desenvolvido por [Jorge Valega](https://github.com/jorgevalega) – apaixonado por automação, acessibilidade e ferramentas de aprendizado de idiomas.
+All required dependencies are listed in [`requirements.txt`](requirements.txt).
 
 ---
 
-## 📄 Licença
+## 🧑‍💻 Author
 
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
+Developed by [Jorge Valega](https://github.com/jorgevalega) – passionate about automation, accessibility, and educational tools for children and families.
 
 ---
 
-## ☕ Apoie o projeto
+## 📄 License
 
-Se este jogo for útil para você ou sua família, deixe uma ⭐ no GitHub ou compartilhe com amigos e educadores!
+This project is licensed under the [Licença MIT](LICENSE).
+
+---
+
+## ☕ Support the Project
+
+If this game was helpful for you or your family, leave a ⭐ on GitHub or share it with teachers and friends!
